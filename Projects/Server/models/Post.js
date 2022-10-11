@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PostScema = new mongoose.Schema(
+const PostSchema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -13,17 +13,17 @@ const PostScema = new mongoose.Schema(
         },
         photo: {
             type: String,
-            required: true
+            required: false
         },
         username: {
             type: String,
             required: false
         },
         categories: {
-            type : Array,
-            required : false
+            type: Array,
+            required: false
         }
     },
     { timestamps: true }
 )
-module.exports = mongoose.model("Post", PostScema)
+module.exports = mongoose.model("Post", PostSchema)

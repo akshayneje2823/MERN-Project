@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
+const postRoute = require('./routes/post')
 const app = express();
 
 dotenv.config({ path: './config/.env' });
@@ -19,8 +20,9 @@ mongoose
   .catch((err) => console.log(err));
 
 // All Routes
-app.use("/api/auth",authRoute)
-app.use("/api/auth",userRoute)
+app.use("/api/auth", authRoute)
+app.use("/api/users", userRoute)
+app.use("/api/posts", postRoute)
 
 // app.get('/',(req,res)=>{
 //   res.send("Hello")
@@ -29,11 +31,9 @@ app.use("/api/auth",userRoute)
 // })
 
 app.listen(process.env.PORT, (err) => {
-    if (err) throw err;
-    console.log("Backend is running.")
+  if (err) throw err;
+  console.log("Backend is running.")
 })
 
 
 
-// blog-app
-// jQdoJIlvxRUG1QtI
