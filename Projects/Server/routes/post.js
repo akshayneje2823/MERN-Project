@@ -61,15 +61,29 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-// // GET Post
-// router.get('/:id', async (req, res) => {
-//     // try {
-//     //     const user = await User.findById(req.params.id);
-//     //     const { password, ...others } = user._doc;
-//     //     res.status(200).json(others)
-//     // } catch (error) {
-//     //     res.status(500).json(error)
-//     // }
-// })
+// GET Post
+router.get('/', async (req, res) => {
+    const username = req.query.user;
+    const catName = req.query.cat;
+    try {
+        let posts;
+        if (username) {
+            posts = await Post.find({ username: username })
+        } else if (catName) {
+            posts = await Post.find({
+                categories: {
+                    $in: [catName],
+                }
+            })
+        } else {
+            posts = await Post.find()
+        }
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 
 module.exports = router
+
+// http://localhost:5000/api/posts/634667e347f1a7f2a42fc1c0
