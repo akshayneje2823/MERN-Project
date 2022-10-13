@@ -61,6 +61,16 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// GET Single Post by id
+router.get('/:id',async(req,res)=>{
+    try {
+        const post = await Post.findById(req.params.id);
+        res.status(200).json(post)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 // GET Post
 router.get('/', async (req, res) => {
     const username = req.query.user;
@@ -88,3 +98,7 @@ router.get('/', async (req, res) => {
 module.exports = router
 
 // http://localhost:5000/api/posts/634667e347f1a7f2a42fc1c0
+
+
+
+
